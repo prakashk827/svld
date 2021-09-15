@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +33,7 @@
 				<button class="app-search__button">
 					<i class="fa fa-search"></i>
 				</button></li> -->
-				
+
 			<!--Notification Menu starts-->
 
 			<jsp:include page="includes/notification_menu.jsp" />
@@ -57,24 +61,33 @@
 		<!-- inluclude app_title starts -->
 		<jsp:include page="includes/app_title.jsp" />
 		<!-- inluclude app_title ends -->
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="tile">
 					<div class="tile-body">
 						<div class="table-responsive">
+						
 							<table class="table table-hover table-bordered" id="sampleTable">
 								<thead>
-									<th>Date</th>
-									<th>Time</th>
-									<th>Mobile Number</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Winner</th>
-									<th>Blocked</th>
-									<th>isFilled</th>
-									<th>Status</th>
+									<tr>
+										<th>Total Coupons</th>
+										<th>ClientUId</th>
+										<th>CouponId</th>
+										<th>City</th>
+									</tr>
 								</thead>
+								<tbody>
+
+									<c:forEach items="${couponAnalysis}" var="map">
+										<tr>
+											<c:forEach items="${map}" var="entry">
+												<td>${entry.value}</td>
+											</c:forEach>
+										</tr>
+									</c:forEach>
+
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -82,42 +95,13 @@
 			</div>
 		</div>
 	</main>
-	
+
 	<!-- footer Starts -->
 	<jsp:include page="includes/footer.jsp" />
 	<!-- footer Ends -->
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$("#sampleTable").DataTable({
-				"ajax" : {
-					"url" : "admin/client/registered",
-					"dataSrc" : ""
-				},
-				"columns" : [ {
-					"data" : "date"
-				}, {
-					"data" : "time"
-				}, {
-					"data" : "clientUId"
-				}, {
-					"data" : "firstName"
-				}, {
-					"data" : "lastName"
-				}, {
-					"data" : "winner"
-				}, {
-					"data" : "blocked"
-				}, {
-					"data" : "isFilled"
-				}, {
-					"data" : "status"
-				}
-
-				]
-			});
-		});
+		
 	</script>
 
 </body>

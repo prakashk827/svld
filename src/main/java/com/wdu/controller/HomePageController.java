@@ -10,4 +10,6 @@ public class HomePageController {
 	public String homePage() {
 		return "admin/admin";
 	}
+	
+	
 }
