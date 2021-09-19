@@ -24,7 +24,7 @@ public class RazorPayController {
 		return service.getOrders();	
 	}
 	//15 min schedule
-	@Scheduled(initialDelay = 10000 , fixedDelay = 10000)
+	@Scheduled(initialDelay = 600000 , fixedDelay = 600000)
 	@GetMapping("/payments")
 	public void getRazorPayPayments() throws RazorpayException, GenericException {
 		 service.getRazorPayPayments();
