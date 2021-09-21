@@ -29,7 +29,7 @@
 				<button class="app-search__button">
 					<i class="fa fa-search"></i>
 				</button></li> -->
-				
+
 			<!--Notification Menu starts-->
 
 			<jsp:include page="includes/notification_menu.jsp" />
@@ -57,7 +57,7 @@
 		<!-- inluclude app_title starts -->
 		<jsp:include page="includes/app_title.jsp" />
 		<!-- inluclude app_title ends -->
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="tile">
@@ -65,15 +65,17 @@
 						<div class="table-responsive">
 							<table class="table table-hover table-bordered" id="sampleTable">
 								<thead>
-									<th>Date</th>
-									<th>Time</th>
-									<th>Mobile Number</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Winner</th>
-									<th>Blocked</th>
-									<th>isFilled</th>
-									<th>Status</th>
+									<tr>
+										<th>Date</th>
+										<th>Time</th>
+										<th>Mobile Number</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Winner</th>
+										<th>Blocked</th>
+										<th>isFilled</th>
+										<th>Status</th>
+									</tr>
 								</thead>
 							</table>
 						</div>
@@ -82,7 +84,7 @@
 			</div>
 		</div>
 	</main>
-	
+
 	<!-- footer Starts -->
 	<jsp:include page="includes/footer.jsp" />
 	<!-- footer Ends -->

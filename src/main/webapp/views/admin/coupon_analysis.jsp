@@ -13,7 +13,7 @@
 <!-- Header starts -->
 <jsp:include page="includes/header.jsp" />
 <!-- Header Ends -->
-
+<title>${appTitle.title}</title>
 </head>
 <body class="app sidebar-mini">
 	<!-- Navbar-->
@@ -62,38 +62,76 @@
 		<jsp:include page="includes/app_title.jsp" />
 		<!-- inluclude app_title ends -->
 
-		<div class="row">
+
+		<!-- Drop down Starts -->
+
+		<div class="row title">
 			<div class="col-md-12">
 				<div class="tile">
 					<div class="tile-body">
-						<div class="table-responsive">
-						
-							<table class="table table-hover table-bordered" id="sampleTable">
-								<thead>
-									<tr>
-										<th>Total Coupons</th>
-										<th>ClientUId</th>
-										<th>CouponId</th>
-										<th>City</th>
-									</tr>
-								</thead>
-								<tbody>
+						<div class="col-md-3">
+							<label>Select Coupon Id</label> <select class="form-control"
+								id="couponId">
+								<option value="">Please Select</option>
 
-									<c:forEach items="${couponAnalysis}" var="map">
-										<tr>
-											<c:forEach items="${map}" var="entry">
-												<td>${entry.value}</td>
-											</c:forEach>
-										</tr>
-									</c:forEach>
+								<c:forEach items="${couponIds}" var="entry">
 
-								</tbody>
-							</table>
+									<option value="${entry.id}">${entry.couponName}</option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- Drop down Ends -->
+
+
+		<c:if test="${couponAnalysis.code != 200}">
+			<p style="text-align: center">${couponAnalysis.message}</p>
+		</c:if>
+
+
+		<c:if test="${couponAnalysis.code == 200}">
+			<p style="text-align: left">${couponAnalysis.message}</p>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tile">
+						<div class="tile-body">
+							<div class="table-responsive">
+
+								<table class="table table-hover table-bordered" id="sampleTable">
+									<thead>
+										<tr>
+											<th>Total Coupons</th>
+											<th>ClientUId</th>
+											<th>CouponId</th>
+											<th>City</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<c:forEach items="${couponAnalysis.response}" var="map">
+											<tr>
+												<c:forEach items="${map}" var="entry">
+													<td>${entry.value}</td>
+												</c:forEach>
+											</tr>
+										</c:forEach>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+
+
+
 	</main>
 
 	<!-- footer Starts -->
@@ -101,7 +139,7 @@
 	<!-- footer Ends -->
 
 	<script type="text/javascript">
-		
+		$('#sampleTable').DataTable();
 	</script>
 
 </body>

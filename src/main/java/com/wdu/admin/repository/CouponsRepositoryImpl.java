@@ -18,5 +18,11 @@ public class CouponsRepositoryImpl implements CouponsRepository {
 		return  jdbc.queryForList(SQL);
 		
 	}
+	@Override
+	public List<Map<String, Object>> getAllCouponIds(String SQL) {
+		
+		return  jdbc.queryForList(SQL);
+		
+	}
 
 }
