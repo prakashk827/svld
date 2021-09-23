@@ -36,7 +36,7 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 
 	@Override
 	public List<NoticeBoard> getActiveNoticeBoard() throws GenericException {
-		final String SQL = "SELECT *,DATE_FORMAT(announceDate,'%d-%m-%Y') AS announceDate,TIME_FORMAT(announceTime, \"%H-%i %p\") AS announceTime FROM notice_board WHERE status = 'active' ORDER BY id DESC";
+		final String SQL = "SELECT *,DATE_FORMAT(announceDate,'%d-%m-%Y') AS announceDate,TIME_FORMAT(announceTime, \"%H-%i %p\") AS announceTime FROM notice_board WHERE display = 'show' ORDER BY id DESC";
 		List<NoticeBoard> noticeBoardList = null;
 		try {			
 			noticeBoardList = jdbc.query(SQL, new BeanPropertyRowMapper<NoticeBoard>(NoticeBoard.class));
