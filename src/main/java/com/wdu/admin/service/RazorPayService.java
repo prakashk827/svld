@@ -20,7 +20,7 @@ import com.wdu.exception.GenericException;
 @Service
 
 public class RazorPayService {
-	
+
 	@Autowired
 	RazorPayRepository razorPayRepository;
 
@@ -39,14 +39,14 @@ public class RazorPayService {
 
 			orders = razorpay.Orders.fetchAll(orderRequest);
 
-			//System.out.println(orders);
+			// System.out.println(orders);
 
 			final GsonBuilder gsonBuilder = new GsonBuilder();
 			final Gson gson = gsonBuilder.create();
 			ordersList = gson.fromJson(orders.toString(), RazorPayOrders[].class);
-			
+
 			for (RazorPayOrders order : ordersList) {
-				
+
 				System.out.println(order.getRazorPayNotesList());
 			}
 
@@ -60,34 +60,35 @@ public class RazorPayService {
 
 	public void getRazorPayPayments() throws RazorpayException, GenericException {
 		RazorpayPayments[] paymentstList = null;
-		//Test mode prakash 
-		//rzp_test_dNYs2vEQKMjA1R
-		//Cmad9esZbPU5lUpgHQx8i014
+		// Test mode prakash
+		// rzp_test_dNYs2vEQKMjA1R
+		// Cmad9esZbPU5lUpgHQx8i014
 		RazorpayClient razorpay = new RazorpayClient("rzp_live_3fu80DFDiZbJ4L", "QGD8GQZffFcyLRgy1Yv4heNz");
 		try {
 			JSONObject paymentRequest = new JSONObject();
 
 			// supported option filters (from, to, count, skip)
-			paymentRequest.put("count",99);
+			paymentRequest.put("count", 99);
 			paymentRequest.put("skip", 1);
 
 			List<Payment> payments = razorpay.Payments.fetchAll(paymentRequest);
-			
+
 			System.out.println(payments);
 			final GsonBuilder gsonBuilder = new GsonBuilder();
 			final Gson gson = gsonBuilder.create();
 
 			paymentstList = gson.fromJson(payments.toString(), RazorpayPayments[].class);
-			//System.out.println(paymentstList);
+			// System.out.println(paymentstList);
 
 			for (RazorpayPayments payment : paymentstList) {
-					
-				 razorPayRepository.updateRazorPayPayments(payment);
+
+				razorPayRepository.updateRazorPayPayments(payment);
 			}
 
 		} catch (RazorpayException e) {
-			// Handle Exception
+			
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 	}
