@@ -58,7 +58,9 @@ public class RazorPayService {
 		return ordersList;
 	}
 
-	public void getRazorPayPayments() throws RazorpayException, GenericException {
+	public List<String> getRazorPayPayments() throws RazorpayException, GenericException {
+		List<String> logList = null;
+		
 		RazorpayPayments[] paymentstList = null;
 		// Test mode prakash
 		// rzp_test_dNYs2vEQKMjA1R
@@ -82,7 +84,7 @@ public class RazorPayService {
 
 			for (RazorpayPayments payment : paymentstList) {
 
-				razorPayRepository.updateRazorPayPayments(payment);
+				 logList =  razorPayRepository.updateRazorPayPayments(payment);
 			}
 
 		} catch (RazorpayException e) {
@@ -90,6 +92,8 @@ public class RazorPayService {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		return logList;
 
 	}
 
