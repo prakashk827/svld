@@ -1,5 +1,6 @@
 package com.wdu.admin.repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +22,8 @@ public class RazorPayRepositoryImpl implements RazorPayRepository {
 	JdbcTemplate jdbc;
 	
 	@Override
-	public void updateRazorPayPayments(RazorpayPayments payment) throws GenericException {
-
+	public List<String> updateRazorPayPayments(RazorpayPayments payment) throws GenericException {
+		List<String> logList = new ArrayList<>();
 		String txnId = payment.getPaymentId();
 
 		final String SQL = "SELECT * FROM coupons_sold WHERE transactionId = ?";
@@ -62,7 +63,8 @@ public class RazorPayRepositoryImpl implements RazorPayRepository {
 							jdbc.update(UPDATE_PAYMENT_STATUS, lucky, "complete", txnId, time, date, clientUId,
 									couponId, "pending");
 						}
-						
+						String log = "Payment Status Updated for clientUId : " + clientUId + "..Date :" + new Date();
+						logList.add(log);
 						System.out.println("Payment Status Updated for clientUId : " + clientUId + "..Date :" + new Date() );
 						
 
@@ -74,6 +76,7 @@ public class RazorPayRepositoryImpl implements RazorPayRepository {
 			
 
 		}
+		return logList;
 		
 		
 	}

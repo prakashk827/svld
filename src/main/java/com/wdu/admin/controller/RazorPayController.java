@@ -1,6 +1,7 @@
 package com.wdu.admin.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,19 +17,22 @@ import com.wdu.exception.GenericException;
 
 @RestController
 public class RazorPayController {
-	
-	@Autowired 
+
+	@Autowired
 	RazorPayService service;
+
 	@GetMapping("/orders")
-	public RazorPayOrders[] getRazorPayOrders() throws RazorpayException, JsonMappingException, JsonProcessingException {
-		return service.getOrders();	
+	public RazorPayOrders[] getRazorPayOrders()
+			throws RazorpayException, JsonMappingException, JsonProcessingException {
+		return service.getOrders();
 	}
-	//15 min schedule
-	@Scheduled(initialDelay = 600000 , fixedDelay = 600000)
+
+	// 15 min schedule
+	@Scheduled(initialDelay = 600000, fixedDelay = 600000)
 	@GetMapping("/payments")
-	public void getRazorPayPayments() throws RazorpayException, GenericException {
-		 service.getRazorPayPayments();
-		 System.out.println("Payment status update in running mode....." + new Date());
+	public List<String> getRazorPayPayments() throws RazorpayException, GenericException {
+		System.out.println("Payment status update in running mode....." + new Date());
+		return service.getRazorPayPayments();
 	}
 
 }
