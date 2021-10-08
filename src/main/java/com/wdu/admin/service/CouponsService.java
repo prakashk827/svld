@@ -23,11 +23,11 @@ public class CouponsService {
 
 	}
 
-	public List<Map<String, Object>> getAllCouponId() {
+	public List<Map<String, Object>> getCouponIdAndNames() {
 		
 		final String SQL= "SELECT id,couponName FROM coupons ORDER BY id DESC";
 		
-		return couponsRepository.getAllCouponIds(SQL);
+		return couponsRepository.getCouponIdAndNames(SQL);
 	}
 
 }

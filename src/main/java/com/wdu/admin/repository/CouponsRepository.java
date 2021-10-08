@@ -7,6 +7,6 @@ public interface CouponsRepository {
 	
 	List<Map<String, Object>>  queryForList(String SQL);
 
-	List<Map<String, Object>>  getAllCouponIds(String SQL);
+	List<Map<String, Object>>  getCouponIdAndNames(String SQL);
 
 }

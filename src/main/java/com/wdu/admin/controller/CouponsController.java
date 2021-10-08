@@ -38,9 +38,9 @@ public class CouponsController {
 	}
 	
 	@GetMapping("/coupons/couponId")
-	public List<Map<String, Object>> getCouponId(){
+	public List<Map<String, Object>> getCouponIdAndNames(){
 		
-		return couponService.getAllCouponId();
+		return couponService.getCouponIdAndNames();
 		
 		
 	}

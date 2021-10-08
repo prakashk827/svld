@@ -65,10 +65,10 @@
 
 		<!-- Drop down Starts -->
 
-		<div class="row title">
+		<div class="row">
 			<div class="col-md-12">
 				<div class="tile">
-					<div class="tile-body">
+					
 						<div class="col-md-3">
 							<label>Select Coupon Id</label> <select class="form-control"
 								id="couponId">
@@ -80,10 +80,14 @@
 								</c:forEach>
 							</select>
 						</div>
-					</div>
+						<div class="col-md-3">
+							555
+						</div>
+					
 				</div>
 			</div>
 		</div>
+		
 
 		<!-- Drop down Ends -->
 
